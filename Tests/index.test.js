@@ -28,7 +28,6 @@ test('signup failed if username empty', async () => {
     const username='';
     const password='password123';
     const response = await axios.post(`${BackendURL}/api/v1/signup`, {
-        username,
         password,
         type:"admin"
     });
@@ -37,6 +36,26 @@ test('signup failed if username empty', async () => {
 );
 test('login failed if password incorrect', async () => {
     const username='tushar';
+    const password='wrongpassword';
+    const response = await axios.post(`${BackendURL}/api/v1/login`, {
+        username,
+        password
+    });
+    expect(response.statusCode).toBe(400);
+}
+);
+test('login username and password are correct ',async()=>{
+    const username='tushar';
+    const password='password123';
+    const response = await axios.post(`${BackendURL}/api/v1/login`, {
+        username,
+        password
+    });
+    expect(response.statusCode).toBe(200);
+});
+
+test('sigin failed if usernamee and password are incorrect ',async()=>{
+    const username='wrongusername';
     const password='wrongpassword';
     const response = await axios.post(`${BackendURL}/api/v1/login`, {
         username,
