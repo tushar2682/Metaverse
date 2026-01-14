@@ -195,3 +195,64 @@ test('user is not able to create space without mapId and dimension', async () =>
     });
     expect(response.status).toBe(400);
 });
+
+test("User is not able to delete a space that doesnt exist", async () => {
+    const response = await axios.delete(`${BACKEND_URL}/api/v1/space/randomIdDoesntExist`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.status).toBe(400);
+});
+
+test("User is able to delete a space that does exist", async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        "name": "Test",
+        "dimensions": "100x200",
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+
+    const deleteResponse = await axios.delete(`${BACKEND_URL}/api/v1/space/${response.data.spaceId}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+
+    expect(deleteResponse.status).toBe(200);
+});
+
+test("user is not able to delete a space created by another user", async () => {
+    // 1. Setup a second user
+    const username = 'user' + Math.random().toString(36).substring(7);
+    const password = 'password123';
+    await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
+    const loginRes = await axios.post(`${BACKEND_URL}/api/v1/login`, { username, password }, validate);
+    const secondToken = loginRes.data.token;
+
+    // 2. Create space with the primary user (token)
+    const response = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        "name": "Test",
+        "dimensions": "100x200",
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+
+    // 3. Try to delete the space using the second user's token
+    const deleteResponse = await axios.delete(`${BACKEND_URL}/api/v1/space/${response.data.spaceId}`, {
+        headers: {
+            authorization: `Bearer ${secondToken}`
+        },
+        validateStatus: () => true
+    });
+
+    expect(deleteResponse.status).toBe(403);
+});
