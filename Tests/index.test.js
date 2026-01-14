@@ -144,3 +144,54 @@ test('Available avatars lists the recently created avatar', async () => {
     const currentAvatar = response.data.avatars.find(x => x.id == avatarId);
     expect(currentAvatar).toBeDefined();
 });
+
+test("user is able to create a space", async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/user/space`, {
+        "name": "test",
+        "mapId": mapId
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.status).toBeDefined();
+});
+
+test("user is able to create a space with mapId", async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/user/space`, {
+        "name": "test",
+        "mapId": mapId
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.data.spaceId).toBeDefined();
+});
+
+test('user is able to create space with dimensions', async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        "name": "Test",
+        "dimensions": "100x200",
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.data.spaceId).toBeDefined();
+});
+
+test('user is not able to create space without mapId and dimension', async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/user/space`, {
+        "name": "test"
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.status).toBe(400);
+});
