@@ -347,5 +347,58 @@ describe("Arena endpoints", () => {
         });
 
         element1Id = element1Response.data && element1Response.data.id;
+
+        const mapResponse = await axios.post(`${BACKEND_URL}/api/v1/admin/map`, {
+            thumbnailUrl: "https://thumbnail.com/a.png",
+            dimensions: "100x200",
+            name: "Default space",
+            defaultElements: [
+                {
+                    elementId: element1Id,
+                    x: 20,
+                    y: 20
+                }, {
+                    elementId: element1Id,
+                    x: 18,
+                    y: 20
+                }, {
+                    elementId: element2Id,
+                    x: 19,
+                    y: 20
+                }
+            ]
+        }, {
+            headers: {
+                authorization: `Bearer ${adminToken}`
+            }
+        });
+        mapId = mapResponse.data.id;
     });
 });
+
+const mapResponse = await axios.post(`${BACKEND_URL}/api/v1/admin/map`, {
+    thumbnailUrl: "https://thumbnail.com/a.png",
+    dimensions: "100x200",
+    name: "Default space",
+    defaultElements: [
+        {
+            elementId: element1Id,
+            x: 20,
+            y: 20
+        }, {
+            elementId: element1Id,
+            x: 18,
+            y: 20
+        }, {
+            elementId: element2Id,
+            x: 19,
+            y: 20
+        }
+    ]
+}, {
+    headers: {
+        authorization: `Bearer ${adminToken}`
+    }
+})
+mapId = mapResponse.data.id
+
