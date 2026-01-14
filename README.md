@@ -1,1 +1,13 @@
-# Metaverse
+# Metaverse 2D - Virtual Workspace Platform
+
+Metaverse 2D is a sophisticated virtual workspace platform inspired by the concepts taught in the 100xDevs cohort. It allows users to interact in a 2D environment, manage digital avatars, and create customizable spaces for collaboration and social interaction.
+
+## Project Overview
+
+This project implements a high-performance backend system for a 2D Metaverse. It features a robust permission system, real-time spatial interactions, and a fully customizable map and element engine.
+
+### Key Capabilities
+- **Virtual Avatars**: Users can select and customize their digital presence.
+- **Dynamic Spaces**: Create, manage, and interact within virtual rooms.
+- **Admin Engine**: Powerful tools for managing elements, maps, and world constraints.
+- **RESTful API**: A clean, scalable API architecture for frontend integration.
