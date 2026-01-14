@@ -385,33 +385,36 @@ describe("Arena endpoints", () => {
                 authorization: `Bearer ${adminToken}`
             }
         });
-        mapId = mapResponse.data.id;
+        const spaceResponse = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+            name: "Default space",
+            dimensions: "100x200",
+            mapId: mapId
+        }, {
+            headers: {
+                authorization: `Bearer ${adminToken}`
+            }
+        });
+        spaceId = spaceResponse.data.spaceId;
     });
 });
-
-const mapResponse = await axios.post(`${BACKEND_URL}/api/v1/admin/map`, {
-    thumbnailUrl: "https://thumbnail.com/a.png",
-    dimensions: "100x200",
-    name: "Default space",
-    defaultElements: [
-        {
-            elementId: element1Id,
-            x: 20,
-            y: 20
-        }, {
-            elementId: element1Id,
-            x: 18,
-            y: 20
-        }, {
-            elementId: element2Id,
-            x: 19,
-            y: 20
+test("Incorrect spaceId returns a 400", async () => {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/space/123kasdk01`, {
+        headers: {
+            "authorization": `Bearer ${userToken}`
         }
-    ]
-}, {
-    headers: {
-        authorization: `Bearer ${adminToken}`
-    }
+    });
+    expect(response.status).toBe(400)
 })
-mapId = mapResponse.data.id
+
+test("Correct spaceId returns all the elements", async () => {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/space/${spaceId}`, {
+        headers: {
+            "authorization": `Bearer ${userToken}`
+        }
+    });
+    console.log(response.data)
+    expect(response.data.dimensions).toBe("100x200")
+    expect(response.data.elements.length).toBe(3)
+})
+
 
