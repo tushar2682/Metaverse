@@ -41,6 +41,14 @@ describe('Authentication', () => {
         expect(response.status).toBe(400);
     });
 
+    test('signup failed if username already exists', async () => {
+        const username = 'existinguser' + Math.random().toString(36).substring(7);
+        const password = 'password123';
+        await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
+        const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
+        expect(response.status).toBe(400);
+    });
+
     test('login failed if password incorrect', async () => {
         const username = 'tushar';
         const password = 'wrongpassword';
