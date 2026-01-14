@@ -26,3 +26,35 @@ The system follows a modular architecture:
 2. **Middleware Layer**: Manages authentication, validation, and error handling.
 3. **Logic Layer**: Implements core business rules for spatial interactions.
 4. **Data Access Layer**: Provides an abstraction over the PostgreSQL database using Prisma.
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/tushar2682/Metaverse.git
+   cd Metaverse
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory:
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/metaverse"
+   JWT_SECRET="your_secret_key"
+   PORT=3000
+   ```
+
+## Running the Server
+
+- **Development Mode**:
+  ```bash
+  npm run dev
+  ```
+- **Production Mode**:
+  ```bash
+  npm start
+  ```
