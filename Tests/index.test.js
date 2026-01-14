@@ -256,3 +256,96 @@ test("user is not able to delete a space created by another user", async () => {
 
     expect(deleteResponse.status).toBe(403);
 });
+
+test("admin has no spaces initially", async () => {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/space/all`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.data.spaces.length).toBe(0);
+});
+
+test("admin gets one space after creation", async () => {
+    const spaceCreateResponse = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        "name": "Test",
+        "dimensions": "100x200",
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+
+    const response = await axios.get(`${BACKEND_URL}/api/v1/space/all`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+
+    const filteredSpace = response.data.spaces.find(x => x.id == spaceCreateResponse.data.spaceId);
+    expect(response.data.spaces.length).toBe(1);
+    expect(filteredSpace).toBeDefined();
+});
+
+describe("Arena endpoints", () => {
+    let mapId;
+    let element1Id;
+    let element2Id;
+    let adminToken;
+    let adminId;
+    let userToken;
+    let userId;
+    let spaceId;
+
+    beforeAll(async () => {
+        const username = `kirat-${Math.random()}`
+        const password = "123456"
+
+        const signupResponse = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
+            username,
+            password,
+            type: "admin"
+        }, validate);
+
+        adminId = signupResponse.data && signupResponse.data.userId;
+
+        const response = await axios.post(`${BACKEND_URL}/api/v1/login`, {
+            username: username,
+            password
+        }, validate)
+
+        adminToken = response.data && response.data.token;
+
+        const userSignupResponse = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
+            username: username + "-user",
+            password,
+            type: "user"
+        }, validate);
+
+        userId = userSignupResponse.data && userSignupResponse.data.userId;
+
+        const userSigninResponse = await axios.post(`${BACKEND_URL}/api/v1/login`, {
+            username: username + "-user",
+            password
+        }, validate)
+
+        userToken = userSigninResponse.data && userSigninResponse.data.token;
+
+        const element1Response = await axios.post(`${BACKEND_URL}/api/v1/admin/element`, {
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRCRca3wAR4zjPPTzeIY9rSwbbqB6bB2hVkoTXN4eerXOIkJTG1GpZ9ZqSGYafQPToWy_JTcmV5RHXsAsWQC3tKnMlH_CsibsSZ5oJtbakq&usqp=CAE",
+            "width": 1,
+            "height": 1,
+            "static": true
+        }, {
+            headers: {
+                authorization: `Bearer ${adminToken}`
+            },
+            validateStatus: () => true
+        });
+
+        element1Id = element1Response.data && element1Response.data.id;
+    });
+});
