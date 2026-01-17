@@ -1,19 +1,10 @@
-const axios = require('axios');
+const axiosConfig = { validateStatus: () => true };
 
-const BACKEND_URL = 'http://localhost:3000';
-
-// shared variables for tests that need a created user + avatar
+// Shared state for all tests
 let token = '';
 let avatarId = '';
 let userId = '';
 let mapId = '';
-
-const STATUS_OK = 200;
-const STATUS_BAD_REQUEST = 400;
-const STATUS_UNAUTHORIZED = 401;
-const STATUS_FORBIDDEN = 403;
-
-const axiosConfig = { validateStatus: () => true };
 
 describe('Authentication flow and session management', () => {
     test('user is signing up correctly', async () => {
