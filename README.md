@@ -104,6 +104,12 @@ We welcome contributions to the Metaverse 2D project!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Troubleshooting
+
+- **Database Connection Issues**: Ensure your PostgreSQL service is running and the `DATABASE_URL` in `.env` is correct.
+- **Port Conflict**: If port 3000 is occupied, change the `PORT` variable in your `.env` file.
+- **JWT Errors**: Ensure `JWT_SECRET` is defined in your environment variables.
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
