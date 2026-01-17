@@ -9,6 +9,10 @@ let userId = '';
 let mapId = '';
 
 describe('Authentication flow and session management', () => {
+    /**
+     * These tests verify the core security logic including registration,
+     * login, and password validation.
+     */
     test('user is signing up correctly', async () => {
         const username = 'tushar' + Math.random().toString(36).substring(7);
         const password = 'password123';
