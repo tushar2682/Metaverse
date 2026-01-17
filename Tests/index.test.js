@@ -438,11 +438,12 @@ describe("Arena endpoints", () => {
                     y: 20
                 }
             ]
-        }, {
-            headers: {
-                authorization: `Bearer ${adminToken}`
-            }
-        });
+        }, axiosConfig);
+
+        mapId = mapResponse.data && mapResponse.data.id;
+        expect(mapId).toBeDefined();
+        expect(mapResponse.data.defaultElements.length).toBe(3);
+
         const spaceResponse = await axios.post(`${BACKEND_URL}/api/v1/space`, {
             name: "Default space",
             dimensions: "100x200",
