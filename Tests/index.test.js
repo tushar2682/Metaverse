@@ -368,6 +368,7 @@ test("admin gets one space after creation", async () => {
 });
 
 describe("Arena endpoints", () => {
+    // Shared state for arena-specific testing
     let mapId;
     let element1Id;
     let element2Id;
@@ -378,6 +379,7 @@ describe("Arena endpoints", () => {
     let spaceId;
 
     beforeAll(async () => {
+        // 1. Setup Admin and User accounts for integration tests
         const username = `kirat-${Math.random()}`
         const password = "123456"
 
