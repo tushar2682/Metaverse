@@ -122,6 +122,11 @@ We welcome contributions to the Metaverse 2D project!
 - **Twitter**: [@VirtualWorkspace](https://twitter.com/VirtualWorkspace)
 - **Discord**: [Join our Community](https://discord.gg/virtualworkspace)
 
+## Acknowledgments
+
+- Inspired by the 100xDevs cohort.
+- Built with passion for open-source.
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
