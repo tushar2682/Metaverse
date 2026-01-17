@@ -8,9 +8,14 @@ let avatarId = '';
 let userId = '';
 let mapId = '';
 
+const STATUS_OK = 200;
+const STATUS_BAD_REQUEST = 400;
+const STATUS_UNAUTHORIZED = 401;
+const STATUS_FORBIDDEN = 403;
+
 const axiosConfig = { validateStatus: () => true };
 
-describe('Authentication', () => {
+describe('Authentication flow and session management', () => {
     test('user is signing up correctly', async () => {
         const username = 'tushar' + Math.random().toString(36).substring(7);
         const password = 'password123';
@@ -122,7 +127,7 @@ beforeAll(async () => {
     avatarId = avatarResponse.data && avatarResponse.data.avatarId;
 });
 
-describe('user endpoint data', () => {
+describe('User metadata and profile operations', () => {
     test('user cant update metadata with wrong avatar id', async () => {
         const response = await axios.put(`${BACKEND_URL}/api/v1/user/avatar/wrongid`, {
             name: 'NewName'
