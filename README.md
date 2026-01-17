@@ -56,6 +56,13 @@ The system follows a modular architecture:
 | PUT | `/api/v1/user/metadata` | Update user metadata | Yes |
 | POST | `/api/v1/space` | Create a new virtual space | Yes |
 
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js**: v18.x or higher
+- **PostgreSQL**: v14.x or higher
+- **npm**: v8.x or higher
+
 ## Installation
 
 1. **Clone the repository**:
