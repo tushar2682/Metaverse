@@ -157,6 +157,12 @@ test('Available avatars lists the recently created avatar', async () => {
     expect(currentAvatar).toBeDefined();
 });
 
+test('GET /api/v1/elements lists available world elements', async () => {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/elements`, axiosConfig);
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.data.elements)).toBe(true);
+});
+
 test("user is able to create a space", async () => {
     const response = await axios.post(`${BACKEND_URL}/api/v1/user/space`, {
         "name": "test",
