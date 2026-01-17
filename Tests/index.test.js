@@ -288,6 +288,16 @@ test("User is able to delete a space that does exist", async () => {
     expect(deleteResponse.status).toBe(200);
 });
 
+test("user is not able to delete a space with an invalid token", async () => {
+    const response = await axios.delete(`${BACKEND_URL}/api/v1/space/somespaceid`, {
+        headers: {
+            authorization: `Bearer invalidtoken`
+        },
+        axiosConfig
+    });
+    expect(response.status).toBe(401);
+});
+
 test("user is not able to delete a space created by another user", async () => {
     // 1. Setup a second user
     const username = 'user' + Math.random().toString(36).substring(7);
