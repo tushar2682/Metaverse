@@ -19,14 +19,14 @@ describe('Authentication', () => {
             username,
             password,
             type: 'admin'
-        }, validate);
+        }, axiosConfig);
 
         expect(response.status).toBe(200);
 
         const updatedresponse = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username,
             password
-        }, validate);
+        }, axiosConfig);
 
         expect(updatedresponse.status).toBe(200);
     });
@@ -36,7 +36,7 @@ describe('Authentication', () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
             password,
             type: 'admin'
-        }, validate);
+        }, axiosConfig);
         expect(response.status).toBe(400);
     });
 
@@ -54,7 +54,7 @@ describe('Authentication', () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username,
             password
-        }, validate);
+        }, axiosConfig);
         expect(response.status).toBe(400);
     });
 
@@ -64,7 +64,7 @@ describe('Authentication', () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username,
             password
-        }, validate);
+        }, axiosConfig);
         expect(response.status).toBe(200);
     });
 
@@ -74,7 +74,7 @@ describe('Authentication', () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username,
             password
-        }, validate);
+        }, axiosConfig);
         expect(response.status).toBe(400);
     });
 });
@@ -134,6 +134,14 @@ describe('user endpoint data', () => {
     test('user cant update metadata if the auth header is not provided', async () => {
         const response = await axios.put(`${BACKEND_URL}/api/v1/user/avatar/${avatarId}`, {
             name: 'NewName'
+        }, axiosConfig);
+        expect(response.status).toBe(401);
+    });
+
+    test('admin avatar creation fails without token', async () => {
+        const response = await axios.post(`${BACKEND_URL}/api/v1/admin/avatar`, {
+            imageUrl: 'https://example.com/image.png',
+            name: 'TestAvatar'
         }, axiosConfig);
         expect(response.status).toBe(401);
     });
@@ -333,7 +341,7 @@ describe("Arena endpoints", () => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username: username,
             password
-        }, validate)
+        }, axiosConfig)
 
         adminToken = response.data && response.data.token;
 
@@ -348,7 +356,7 @@ describe("Arena endpoints", () => {
         const userSigninResponse = await axios.post(`${BACKEND_URL}/api/v1/login`, {
             username: username + "-user",
             password
-        }, validate)
+        }, axiosConfig)
 
         userToken = userSigninResponse.data && userSigninResponse.data.token;
 
