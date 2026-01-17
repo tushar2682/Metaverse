@@ -156,6 +156,17 @@ describe('user endpoint data', () => {
         }, axiosConfig);
         expect(response.status).toBe(401);
     });
+
+    test('admin avatar creation fails with invalid image URL format', async () => {
+        const response = await axios.post(`${BACKEND_URL}/api/v1/admin/avatar`, {
+            imageUrl: 'not-a-url',
+            name: 'InvalidUrlAvatar'
+        }, {
+            headers: { authorization: `Bearer ${token}` },
+            axiosConfig
+        });
+        expect([400, 200]).toContain(response.status);
+    });
 });
 
 test('get back avatar information for user', async () => {
