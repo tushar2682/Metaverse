@@ -104,6 +104,13 @@ We welcome contributions to the Metaverse 2D project!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Future Roadmap
+
+- [ ] WebSocket integration for real-time movement updates.
+- [ ] Voice and Video chat within spaces.
+- [ ] Customizable asset store for map elements.
+- [ ] Advanced analytics dashboard for space usage.
+
 ## Troubleshooting
 
 - **Database Connection Issues**: Ensure your PostgreSQL service is running and the `DATABASE_URL` in `.env` is correct.

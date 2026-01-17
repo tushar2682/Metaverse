@@ -8,8 +8,7 @@ let avatarId = '';
 let userId = '';
 let mapId = '';
 
-// Helper: always allow inspecting non-2xx responses rather than throwing
-const validate = { validateStatus: () => true };
+const axiosConfig = { validateStatus: () => true };
 
 describe('Authentication', () => {
     test('user is signing up correctly', async () => {
@@ -44,8 +43,8 @@ describe('Authentication', () => {
     test('signup failed if username already exists', async () => {
         const username = 'existinguser' + Math.random().toString(36).substring(7);
         const password = 'password123';
-        await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
-        const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
+        await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, axiosConfig);
+        const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, axiosConfig);
         expect(response.status).toBe(400);
     });
 
@@ -89,14 +88,14 @@ beforeAll(async () => {
         username,
         password,
         type: 'admin'
-    }, validate);
+    }, axiosConfig);
 
     userId = signupResponse.data && signupResponse.data.userId;
 
     const signinResponse = await axios.post(`${BACKEND_URL}/api/v1/login`, {
         username,
         password
-    }, validate);
+    }, axiosConfig);
 
     token = signinResponse.data && signinResponse.data.token;
 
@@ -135,24 +134,24 @@ describe('user endpoint data', () => {
     test('user cant update metadata if the auth header is not provided', async () => {
         const response = await axios.put(`${BACKEND_URL}/api/v1/user/avatar/${avatarId}`, {
             name: 'NewName'
-        }, validate);
+        }, axiosConfig);
         expect(response.status).toBe(401);
     });
 });
 
 test('get back avatar information for user', async () => {
-    const response = await axios.get(`${BACKEND_URL}/api/v1/user/metadata/bulk?ids=[${userId}]`, validate);
+    const response = await axios.get(`${BACKEND_URL}/api/v1/user/metadata/bulk?ids=[${userId}]`, axiosConfig);
     expect(response.data && response.data.avatars && response.data.avatars.length).toBe(1);
     expect(response.data.avatars[0].userId).toBe(userId);
 });
 
 test('get back empty avatar information for non-existent user', async () => {
-    const response = await axios.get(`${BACKEND_URL}/api/v1/user/metadata/bulk?ids=[nonexistentid]`, validate);
+    const response = await axios.get(`${BACKEND_URL}/api/v1/user/metadata/bulk?ids=[nonexistentid]`, axiosConfig);
     expect(response.data && response.data.avatars && response.data.avatars.length).toBe(0);
 });
 
 test('Available avatars lists the recently created avatar', async () => {
-    const response = await axios.get(`${BACKEND_URL}/api/v1/avatars`, validate);
+    const response = await axios.get(`${BACKEND_URL}/api/v1/avatars`, axiosConfig);
     expect(response.data && response.data.avatars.length).not.toBe(0);
     const currentAvatar = response.data.avatars.find(x => x.id == avatarId);
     expect(currentAvatar).toBeDefined();
@@ -244,8 +243,8 @@ test("user is not able to delete a space created by another user", async () => {
     // 1. Setup a second user
     const username = 'user' + Math.random().toString(36).substring(7);
     const password = 'password123';
-    await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, validate);
-    const loginRes = await axios.post(`${BACKEND_URL}/api/v1/login`, { username, password }, validate);
+    await axios.post(`${BACKEND_URL}/api/v1/signup`, { username, password, type: 'user' }, axiosConfig);
+    const loginRes = await axios.post(`${BACKEND_URL}/api/v1/login`, { username, password }, axiosConfig);
     const secondToken = loginRes.data.token;
 
     // 2. Create space with the primary user (token)
@@ -321,7 +320,7 @@ describe("Arena endpoints", () => {
             username,
             password,
             type: "admin"
-        }, validate);
+        }, axiosConfig);
 
         adminId = signupResponse.data && signupResponse.data.userId;
 
@@ -336,7 +335,7 @@ describe("Arena endpoints", () => {
             username: username + "-user",
             password,
             type: "user"
-        }, validate);
+        }, axiosConfig);
 
         userId = userSignupResponse.data && userSignupResponse.data.userId;
 
