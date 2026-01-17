@@ -77,6 +77,17 @@ describe('Authentication', () => {
         }, axiosConfig);
         expect(response.status).toBe(400);
     });
+
+    test('signup with extremely long username should be handled', async () => {
+        const username = 'a'.repeat(200);
+        const password = 'password123';
+        const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
+            username,
+            password,
+            type: 'user'
+        }, axiosConfig);
+        expect([200, 400]).toContain(response.status);
+    });
 });
 
 // Create a user + avatar once for the user/avatar-related tests
