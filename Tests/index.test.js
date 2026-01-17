@@ -233,6 +233,19 @@ test('user is not able to create space without mapId and dimension', async () =>
     expect(response.status).toBe(400);
 });
 
+test('user is able to create space with special characters in name', async () => {
+    const response = await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        "name": "!@#$%^&*()",
+        "dimensions": "100x200",
+    }, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        axiosConfig
+    });
+    expect(response.status).toBe(200);
+});
+
 test("User is not able to delete a space that doesnt exist", async () => {
     const response = await axios.delete(`${BACKEND_URL}/api/v1/space/randomIdDoesntExist`, {
         headers: {
