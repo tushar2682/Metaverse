@@ -117,6 +117,11 @@ We welcome contributions to the Metaverse 2D project!
 - **Port Conflict**: If port 3000 is occupied, change the `PORT` variable in your `.env` file.
 - **JWT Errors**: Ensure `JWT_SECRET` is defined in your environment variables.
 
+## Connect with Us
+
+- **Twitter**: [@VirtualWorkspace](https://twitter.com/VirtualWorkspace)
+- **Discord**: [Join our Community](https://discord.gg/virtualworkspace)
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
