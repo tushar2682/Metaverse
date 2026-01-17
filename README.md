@@ -46,6 +46,16 @@ The system follows a modular architecture:
 └── jest.config.js    # Test Runner Configuration
 ```
 
+## API Endpoints Overview
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/v1/signup` | User registration | No |
+| POST | `/api/v1/login` | User authentication | No |
+| GET | `/api/v1/avatars` | List available avatars | No |
+| PUT | `/api/v1/user/metadata` | Update user metadata | Yes |
+| POST | `/api/v1/space` | Create a new virtual space | Yes |
+
 ## Installation
 
 1. **Clone the repository**:
