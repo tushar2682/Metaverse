@@ -436,11 +436,13 @@ describe("Arena endpoints", () => {
                     elementId: element1Id,
                     x: 20,
                     y: 20
-                }, {
+                },
+                {
                     elementId: element1Id,
                     x: 18,
                     y: 20
-                }, {
+                },
+                {
                     elementId: element2Id,
                     x: 19,
                     y: 20
