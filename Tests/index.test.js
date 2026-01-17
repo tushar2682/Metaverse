@@ -125,6 +125,10 @@ beforeAll(async () => {
 });
 
 describe('User metadata and profile operations', () => {
+    /**
+     * These tests ensure that user profile data, including avatar selections
+     * and metadata bulk retrieval, are correctly managed and secured.
+     */
     test('user cant update metadata with wrong avatar id', async () => {
         const response = await axios.put(`${BACKEND_URL}/api/v1/user/avatar/wrongid`, {
             name: 'NewName'
