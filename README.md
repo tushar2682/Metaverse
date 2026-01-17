@@ -127,6 +127,10 @@ We welcome contributions to the Metaverse 2D project!
 - Inspired by the 100xDevs cohort.
 - Built with passion for open-source.
 
+## Contact
+
+For any inquiries, please reach out to [tushar2682](https://github.com/tushar2682).
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
