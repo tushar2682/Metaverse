@@ -35,6 +35,17 @@ The system follows a modular architecture:
 3. **Logic Layer**: Implements core business rules for spatial interactions.
 4. **Data Access Layer**: Provides an abstraction over the PostgreSQL database using Prisma.
 
+## Project Folder Structure
+
+```text
+├── Tests/            # Integration and Unit Test Suite
+├── prisma/           # Database Schema and Migrations
+├── src/              # Source Code (Controllers, Middleware, Logic)
+├── .env.example      # Environment Configuration Template
+├── README.md         # Project Documentation
+└── jest.config.js    # Test Runner Configuration
+```
+
 ## Installation
 
 1. **Clone the repository**:
