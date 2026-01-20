@@ -77,4 +77,11 @@
   ```
 
 ## Spaces
-- PO
+- POST `/api/v1/space`
+- DELETE `/api/v1/space/:id`
+- GET `/api/v1/space/all`
+
+## Admin
+- POST `/api/v1/admin/element`
+- PUT `/api/v1/admin/element/:id`
+- POST `/api/v1/admin/map`
