@@ -96,7 +96,10 @@
   ```
 
 ### Delete Space
-- DELETE `/api/v1/space/:id`
+- **Endpoint**: `DELETE /api/v1/space/:id`
+- **Response (200 OK)**: Space deleted successfully.
+
+### List All Spaces
 - GET `/api/v1/space/all`
 
 ## Admin
