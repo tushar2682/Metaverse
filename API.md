@@ -10,11 +10,6 @@ To ensure system stability, the following rate limits apply:
 - **General APIs**: 100 requests per minute.
 - **Admin APIs**: 50 requests per minute.
 
-## Rate Limiting
-To ensure system stability, the following rate limits apply:
-- **Authentication**: 5 requests per minute.
-- **General APIs**: 100 requests per minute.
-- **Admin APIs**: 50 requests per minute.
 
 ## Authentication
 
