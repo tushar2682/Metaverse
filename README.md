@@ -140,6 +140,10 @@ To run this project locally:
 - **Twitter**: [@VirtualWorkspace](https://twitter.com/VirtualWorkspace)
 - **Discord**: [Join our Community](https://discord.gg/virtualworkspace)
 
+## Support
+
+If you encounter any issues, please open an issue on GitHub or contact the maintainers via the social links above.
+
 ## Acknowledgments
 
 - Inspired by the 100xDevs cohort.
