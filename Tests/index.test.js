@@ -995,6 +995,3 @@ describe("Websocket tests", () => {
         expect(message.payload.userId).toBe(adminUserId)
     })
 })
-
-
-
