@@ -53,15 +53,28 @@
   ```
 
 ### Update Metadata
-- PUT `/api/v1/user/metadata`
-- GET `/api/v1/user/metadata/bulk`
+- **Endpoint**: `PUT /api/v1/user/metadata`
+- **Request Body**:
+  ```json
+  {
+    "avatarId": "string"
+  }
+  ```
+- **Response (200 OK)**: Metadata updated successfully.
+
+### Bulk Metadata
+- **Endpoint**: `GET /api/v1/user/metadata/bulk?ids=[id1,id2]`
+- **Response (200 OK)**:
+  ```json
+  {
+    "avatars": [
+      {
+        "userId": "string",
+        "avatarId": "string"
+      }
+    ]
+  }
+  ```
 
 ## Spaces
-- POST `/api/v1/space`
-- DELETE `/api/v1/space/:id`
-- GET `/api/v1/space/all`
-
-## Admin
-- POST `/api/v1/admin/element`
-- PUT `/api/v1/admin/element/:id`
-- POST `/api/v1/admin/map`
+- PO
