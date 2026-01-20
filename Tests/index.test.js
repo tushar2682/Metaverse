@@ -47,6 +47,11 @@ describe('Authentication flow and session management', () => {
         expect(updatedresponse.status).toBe(200);
     });
 
+    /**
+     * Error Handling Standards:
+     * All validation errors and bad requests should return a 400 status code.
+     * Unauthorized access should return a 401, and forbidden access a 403.
+     */
     test('signup failed if username empty', async () => {
         const password = 'password123';
         const response = await axios.post(`${BACKEND_URL}/api/v1/signup`, {
