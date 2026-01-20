@@ -36,6 +36,23 @@
   ```
 
 ## User
+
+### List Avatars
+- **Endpoint**: `GET /api/v1/avatars`
+- **Response (200 OK)**:
+  ```json
+  {
+    "avatars": [
+      {
+        "id": "string",
+        "imageUrl": "string",
+        "name": "string"
+      }
+    ]
+  }
+  ```
+
+### Update Metadata
 - PUT `/api/v1/user/metadata`
 - GET `/api/v1/user/metadata/bulk`
 
