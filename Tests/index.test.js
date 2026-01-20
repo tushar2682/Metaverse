@@ -8,6 +8,20 @@ let avatarId = '';
 let userId = '';
 let mapId = '';
 
+// Helper function to create a space
+const createSpace = async (name, dimensions, mapId, authToken) => {
+    return await axios.post(`${BACKEND_URL}/api/v1/space`, {
+        name,
+        dimensions,
+        mapId
+    }, {
+        headers: {
+            authorization: `Bearer ${authToken}`
+        },
+        ...axiosConfig
+    });
+};
+
 describe('Authentication flow and session management', () => {
     /**
      * These tests verify the core security logic including registration,
@@ -257,8 +271,6 @@ test('user is able to create space with dimensions', async () => {
     expect(response.data.spaceId).toBeDefined();
 });
 
-expect(response.status).toBe(400);
-});
 
 test('user is not able to create space with malformed dimensions', async () => {
     const response = await axios.post(`${BACKEND_URL}/api/v1/space`, {
