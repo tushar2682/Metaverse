@@ -197,6 +197,12 @@ test('get back empty avatar information for non-existent user', async () => {
     expect(response.data && response.data.avatars && response.data.avatars.length).toBe(0);
 });
 
+test('get back partial information for mix of existent and non-existent users', async () => {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/user/metadata/bulk?ids=[${userId},nonexistentid]`, axiosConfig);
+    expect(response.data && response.data.avatars && response.data.avatars.length).toBe(1);
+    expect(response.data.avatars[0].userId).toBe(userId);
+});
+
 test('Available avatars lists the recently created avatar', async () => {
     const response = await axios.get(`${BACKEND_URL}/api/v1/avatars`, axiosConfig);
     expect(response.data && response.data.avatars.length).not.toBe(0);
