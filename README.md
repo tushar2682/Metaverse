@@ -135,6 +135,14 @@ To run this project locally:
 3. Set up your environment variables.
 4. Run the development server: `npm run dev`.
 
+## Testing Coverage
+Our integration tests cover:
+- Authentication & Session logic.
+- User metadata & Profile updates.
+- Bulk data operations.
+- Space & Map creation.
+- WebSocket interactions.
+
 ## Connect with Us
 
 - **Twitter**: [@VirtualWorkspace](https://twitter.com/VirtualWorkspace)
