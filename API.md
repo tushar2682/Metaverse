@@ -77,7 +77,25 @@
   ```
 
 ## Spaces
-- POST `/api/v1/space`
+
+### Create Space
+- **Endpoint**: `POST /api/v1/space`
+- **Request Body**:
+  ```json
+  {
+    "name": "string",
+    "dimensions": "string",
+    "mapId": "string"
+  }
+  ```
+- **Response (200 OK)**:
+  ```json
+  {
+    "spaceId": "string"
+  }
+  ```
+
+### Delete Space
 - DELETE `/api/v1/space/:id`
 - GET `/api/v1/space/all`
 
