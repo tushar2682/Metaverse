@@ -1,8 +1,39 @@
 # Metaverse API Documentation
 
 ## Authentication
-- POST `/api/v1/signup`
-- POST `/api/v1/login`
+
+### Signup
+- **Endpoint**: `POST /api/v1/signup`
+- **Request Body**:
+  ```json
+  {
+    "username": "string",
+    "password": "string",
+    "type": "admin" | "user"
+  }
+  ```
+- **Response (200 OK)**:
+  ```json
+  {
+    "userId": "string"
+  }
+  ```
+
+### Login
+- **Endpoint**: `POST /api/v1/login`
+- **Request Body**:
+  ```json
+  {
+    "username": "string",
+    "password": "string"
+  }
+  ```
+- **Response (200 OK)**:
+  ```json
+  {
+    "token": "string"
+  }
+  ```
 
 ## User
 - PUT `/api/v1/user/metadata`
