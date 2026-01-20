@@ -46,6 +46,16 @@ The system follows a modular architecture:
 └── jest.config.js    # Test Runner Configuration
 ```
 
+## Architecture Diagram
+```mermaid
+graph TD
+    User((User)) -->|HTTP Requests| API[Express API]
+    API -->|Auth| JWT[JWT Logic]
+    API -->|Data| Prisma[Prisma ORM]
+    Prisma --> DB[(PostgreSQL)]
+    User -->|WebSockets| WS[WS Server]
+```
+
 ## API Endpoints Overview
 
 | Method | Endpoint | Description | Auth Required |
