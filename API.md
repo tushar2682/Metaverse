@@ -100,7 +100,20 @@
 - **Response (200 OK)**: Space deleted successfully.
 
 ### List All Spaces
-- GET `/api/v1/space/all`
+- **Endpoint**: `GET /api/v1/space/all`
+- **Response (200 OK)**:
+  ```json
+  {
+    "spaces": [
+      {
+        "id": "string",
+        "name": "string",
+        "dimensions": "string",
+        "thumbnail": "string"
+      }
+    ]
+  }
+  ```
 
 ## Admin
 - POST `/api/v1/admin/element`
