@@ -127,6 +127,14 @@ We welcome contributions to the Metaverse 2D project!
 - **Port Conflict**: If port 3000 is occupied, change the `PORT` variable in your `.env` file.
 - **JWT Errors**: Ensure `JWT_SECRET` is defined in your environment variables.
 
+## Local Hosting
+
+To run this project locally:
+1. Clone the repository.
+2. Install dependencies: `npm install`.
+3. Set up your environment variables.
+4. Run the development server: `npm run dev`.
+
 ## Connect with Us
 
 - **Twitter**: [@VirtualWorkspace](https://twitter.com/VirtualWorkspace)
