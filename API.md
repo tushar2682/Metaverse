@@ -1,5 +1,21 @@
 # Metaverse API Documentation
 
+## Security & Authentication
+All endpoints, except for signup and login, require a valid JWT token passed in the `Authorization` header as a Bearer token:
+`Authorization: Bearer <your_jwt_token>`
+
+## Rate Limiting
+To ensure system stability, the following rate limits apply:
+- **Authentication**: 5 requests per minute.
+- **General APIs**: 100 requests per minute.
+- **Admin APIs**: 50 requests per minute.
+
+## Rate Limiting
+To ensure system stability, the following rate limits apply:
+- **Authentication**: 5 requests per minute.
+- **General APIs**: 100 requests per minute.
+- **Admin APIs**: 50 requests per minute.
+
 ## Authentication
 
 ### Signup
@@ -64,6 +80,7 @@
 
 ### Bulk Metadata
 - **Endpoint**: `GET /api/v1/user/metadata/bulk?ids=[id1,id2]`
+- **Note**: This endpoint supports up to 100 IDs per request for optimal performance.
 - **Response (200 OK)**:
   ```json
   {
