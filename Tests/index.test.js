@@ -388,6 +388,16 @@ test("admin gets one space after creation", async () => {
     expect(filteredSpace).toBeDefined();
 });
 
+test('user is not able to delete space with malformed id', async () => {
+    const response = await axios.delete(`${BACKEND_URL}/api/v1/space/not-a-valid-uuid`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+        validateStatus: () => true
+    });
+    expect(response.status).toBe(400);
+});
+
 describe("Arena endpoints", () => {
     // Shared state for arena-specific testing
     let mapId;
