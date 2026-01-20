@@ -81,6 +81,7 @@ To ensure system stability, the following rate limits apply:
 ### Bulk Metadata
 - **Endpoint**: `GET /api/v1/user/metadata/bulk?ids=[id1,id2]`
 - **Note**: This endpoint supports up to 100 IDs per request for optimal performance.
+- **Note**: This endpoint does not support pagination.
 - **Response (200 OK)**:
   ```json
   {
