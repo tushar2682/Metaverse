@@ -116,6 +116,50 @@
   ```
 
 ## Admin
-- POST `/api/v1/admin/element`
-- PUT `/api/v1/admin/element/:id`
-- POST `/api/v1/admin/map`
+
+### Create Element
+- **Endpoint**: `POST /api/v1/admin/element`
+- **Request Body**:
+  ```json
+  {
+    "imageUrl": "string",
+    "width": "number",
+    "height": "number",
+    "static": "boolean"
+  }
+  ```
+- **Response (200 OK)**:
+  ```json
+  {
+    "id": "string"
+  }
+  ```
+
+### Update Element
+- **Endpoint**: `PUT /api/v1/admin/element/:id`
+- **Request Body**:
+  ```json
+  {
+    "imageUrl": "string"
+  }
+  ```
+- **Response (200 OK)**: Element updated successfully.
+### Create Map
+- **Endpoint**: `POST /api/v1/admin/map`
+- **Request Body**:
+  ```json
+  {
+    "thumbnail": "string",
+    "dimensions": "string",
+    "name": "string",
+    "defaultElements": [
+      { "elementId": "string", "x": "number", "y": "number" }
+    ]
+  }
+  ```
+- **Response (200 OK)**:
+  ```json
+  {
+    "id": "string"
+  }
+  ```
