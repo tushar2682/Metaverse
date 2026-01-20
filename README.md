@@ -1,6 +1,8 @@
 # Metaverse 2D: Next-Generation Virtual Workspace
 
-Metaverse 2D is a high-performance, scalable virtual workspace platform. It enables users to interact in a seamless 2D environment, manage customizable digital avatars, and build unique spaces for collaboration, social interaction, and productivity.
+Metaverse 2D is a high-performance, scalable virtual workspace platform.
+
+**Status**: Alpha - Active Development
 
 ## Project Overview
 
@@ -18,6 +20,13 @@ This project implements a high-performance backend system for a 2D Metaverse. It
 - **Database**: PostgreSQL with Prisma ORM (Scalable relational schema)
 - **Testing**: Jest with Axios for API level validation
 - **Authentication**: JWT (JSON Web Tokens) based secure auth flow
+
+## Core Dependencies
+- `express`: Web framework.
+- `jsonwebtoken`: Authentication.
+- `prisma`: Database management.
+- `ws`: WebSocket support.
+- `axios` & `jest`: Testing suite.
 
 ## Quick Start
 
