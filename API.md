@@ -10,6 +10,22 @@ To ensure system stability, the following rate limits apply:
 - **General APIs**: 100 requests per minute.
 - **Admin APIs**: 50 requests per minute.
 
+## Environment Variables
+The following environment variables are required:
+- `DATABASE_URL`: Connection string for PostgreSQL.
+- `JWT_SECRET`: Secret key for JWT signing.
+- `PORT`: Port to run the server on (default 3000).
+
+## Common Response Codes
+| Status Code | Description |
+|---|---|
+| 200 OK | Request succeeded. |
+| 400 Bad Request | Validation error or invalid data. |
+| 401 Unauthorized | Missing or invalid token. |
+| 403 Forbidden | Access denied (Admin only). |
+| 404 Not Found | Resource does not exist. |
+| 500 Server Error | Internal server error. |
+
 
 ## Authentication
 
